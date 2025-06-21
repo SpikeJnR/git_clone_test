@@ -25,7 +25,7 @@ interface SearchState {
   repos: Repo[];
   loading: boolean;
   error: string | null;
-  page: number | 0,
+  page: number | 1,
 }
 
 const initialState: SearchState = {
@@ -33,7 +33,7 @@ const initialState: SearchState = {
   repos: [],
   loading: false,
   error: null,
-  page: 0,
+  page: 1,
 };
 
 const UserSlice = createSlice({

@@ -25,28 +25,44 @@ export const UserRepositories = () => {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   const prevPage = () => {
-    dispatch(setCurrentPage(page - 1));
+    if (page > 1) {
+      dispatch(setCurrentPage(page - 1));
+    }
   };
 
   const nextPage = () => {
-    dispatch(setCurrentPage(pages[page + 1]));
+    if (page < totalPages) {
+      dispatch(setCurrentPage(page + 1));
+    }
   };
 
-  const handlePageChange = (pageNum: number) => {
-    dispatch(setCurrentPage(pageNum));
+  const handlePageClick = (pageElement: number) => {
+    dispatch(setCurrentPage(pageElement));
   };
 
-  const getVisiblePages = () => {
-    const visiblePages: (number | string)[] = [];
-    visiblePages.push(1);
+  const renderPagination = () => {
+    const pagesToShow: (number | string)[] = [];
 
     if (totalPages <= 4) {
-      for (let i = 2; i <= totalPages; i++) {
-        visiblePages.push(i);
+      pagesToShow.push(...pages);
+    } else {
+      if (page <= totalPages / 2) {
+        pagesToShow.push(1, 2, 3, '...', totalPages);
+      } else if (page > totalPages / 2) {
+        pagesToShow.push(1, '...', totalPages - 2, totalPages - 1, totalPages);
       }
-      return visiblePages;
     }
 
+    return pagesToShow.map((pageElement, id) => (
+      <button
+        key={id}
+        className={`${styles['pagination-button']} ${typeof pageElement === 'number' && pageElement === page ? styles['pagination-button-active'] : ''}`}
+        onClick={() => typeof pageElement === 'number' && handlePageClick(pageElement)}
+        disabled={pageElement === '...'}
+      >
+        {pageElement}
+      </button>
+    ));
   };
 
   return (
@@ -63,8 +79,10 @@ export const UserRepositories = () => {
 
       <div className={styles['repositories-pagination']}>
         <span className={styles['repositories-pagination-title']}>
-          {' '}
-          {} of {user.public_repos} items
+          {repos.length > 0
+            ? `${(page - 1) * REPO_PER_PAGE + 1}–${Math.min(page * REPO_PER_PAGE, user.public_repos)}`
+            : '0'}{' '}
+          of {user.public_repos} items
         </span>
         <button
           className={styles['repositories-pagination-button']}
@@ -82,21 +100,7 @@ export const UserRepositories = () => {
             <path d='M1 0.999878L6 5.99988L1 10.9999' stroke='currentColor' strokeWidth='2' />
           </svg>
         </button>
-        <div className={styles['pagination-numbers']}>
-          {getVisiblePages().map((p, index) => (
-            typeof p === 'number' ? (
-              <button
-                key={index}
-                className={`${styles['pagination-button']} ${p === page ? styles['active'] : ''}`}
-                onClick={() => handlePageChange(p)}
-              >
-                {p}
-              </button>
-            ) : (
-              <span key={index} className={styles['ellipsis']}>{p}</span>
-            )
-          ))}
-        </div>
+        <div> {renderPagination()}</div>
 
         <button
           className={styles['repositories-pagination-button']}
