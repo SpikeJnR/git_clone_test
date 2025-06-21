@@ -1,12 +1,12 @@
 :root {
-  --primary-blue: #0064EB;
-  --primary-white: #FFF;
+  --primary-blue: #0064eb;
+  --primary-white: #fff;
   --primary-green: #f9f9f9;
   --primary-gray-dark: #808080;
   --primary-black: #000;
   --border-radius: 6px;
-  --font-family: "Inter", sans-serif;
-  --second-family: "Work Sans", sans-serif;
+  --font-family: 'Inter', sans-serif;
+  --second-family: 'Work Sans', sans-serif;
 }
 
 *,

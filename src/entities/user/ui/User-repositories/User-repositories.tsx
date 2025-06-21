@@ -1,5 +1,10 @@
 import { useAppDispatch, useAppSelector } from '../../model/store.ts';
-import { getCurrentPage, getDataLoading, getUserData, getUserRepo } from '../../model/User-selectors.ts';
+import {
+  getCurrentPage,
+  getDataLoading,
+  getUserData,
+  getUserRepo,
+} from '../../model/User-selectors.ts';
 import styles from './User-repositories.module.css';
 import { Link } from 'react-router-dom';
 import { REPO_PER_PAGE } from '../../../../config/const.ts';
@@ -13,7 +18,7 @@ export const UserRepositories = () => {
   const repos = useAppSelector(getUserRepo);
   const user = useAppSelector(getUserData);
   const page = useAppSelector(getCurrentPage);
-  const loading = useAppSelector(getDataLoading)
+  const loading = useAppSelector(getDataLoading);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -24,7 +29,7 @@ export const UserRepositories = () => {
 
   if (!user) return;
 
-  if(loading) {
+  if (loading) {
     return <LoadingScreen />;
   }
   const totalPages = Math.ceil(user.public_repos / REPO_PER_PAGE);
@@ -78,14 +83,14 @@ export const UserRepositories = () => {
       ) : (
         <>
           <h2 className={styles['user-repositories-title']}>Repositories ({user.public_repos})</h2>
-            {repos.map(repo => (
-                <div className={styles['user-repositories-element']} key={repo.id}>
-                  <Link className={styles['user-repositories-element-title']} to={repo.html_url}>
-                    {repo.name}
-                  </Link>
-                  <p className={styles['user-repositories-element-description']}>{repo.description}</p>
-                </div>
-              ))}
+          {repos.map(repo => (
+            <div className={styles['user-repositories-element']} key={repo.id}>
+              <Link className={styles['user-repositories-element-title']} to={repo.html_url}>
+                {repo.name}
+              </Link>
+              <p className={styles['user-repositories-element-description']}>{repo.description}</p>
+            </div>
+          ))}
           <div className={styles['repositories-pagination']}>
             <span className={styles['repositories-pagination-title']}>
               {repos.length > 0

@@ -6,11 +6,13 @@ import LoadingScreen from '../../../../pages/Loading-screen';
 
 export const UserInfo = () => {
   const user = useAppSelector(getUserData);
-  const loading = useAppSelector(getDataLoading)
+  const loading = useAppSelector(getDataLoading);
 
-  if (!user) {return;}
+  if (!user) {
+    return;
+  }
 
-  if(loading) {
+  if (loading) {
     return <LoadingScreen />;
   }
 

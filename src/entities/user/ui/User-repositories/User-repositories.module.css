@@ -1,113 +1,112 @@
 /* === WRAPPER === */
 .user-repositories-wrapper {
-    width: 877px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+  width: 877px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
-
 
 /* === TITLE === */
 .user-repositories-title {
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 130%;
-    color: var(--primary-black);
-    margin-bottom: 29px;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 130%;
+  color: var(--primary-black);
+  margin-bottom: 29px;
 }
 
 /* === REPOSITORY ELEMENT === */
 .user-repositories-element {
-    background-color: var(--primary-white);
-    margin-bottom: 24px;
-    padding: 24px 32px;
+  background-color: var(--primary-white);
+  margin-bottom: 24px;
+  padding: 24px 32px;
 }
 
 .user-repositories-element:hover {
-    box-shadow: 0 0 0 3px var(--primary-blue);
+  box-shadow: 0 0 0 3px var(--primary-blue);
 }
 
 .user-repositories-element-title {
-    font-weight: 500;
-    font-size: 24px;
-    color: var(--primary-blue);
-    margin-bottom: 16px;
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--primary-blue);
+  margin-bottom: 16px;
 }
 
 .user-repositories-element-description {
-    font-weight: 400;
-    font-size: 16px;
-    color: var(--primary-black);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--primary-black);
 }
 
 /* === PAGINATION === */
 .repositories-pagination {
-    display: flex;
-    justify-content: end;
-    align-items: center;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 
 .repositories-pagination-title {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 150%;
-    color: var(--primary-gray-dark);
-    margin-right: 16px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: var(--primary-gray-dark);
+  margin-right: 16px;
 }
 
 /* === PAGINATION NAV BUTTONS (ARROWS) === */
 .repositories-pagination-button {
-    width: 24px;
-    height: 24px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    margin-right: 16px;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 16px;
 }
 
 .repositories-pagination-button-icon {
-    transform: rotate(180deg);
-    color: var(--primary-gray-dark);
+  transform: rotate(180deg);
+  color: var(--primary-gray-dark);
 }
 
 .repositories-pagination-button-icon:hover {
-    color: var(--primary-blue);
+  color: var(--primary-blue);
 }
 
 .button-reverse {
-    transform: rotate(0);
-    color: var(--primary-gray-dark);
+  transform: rotate(0);
+  color: var(--primary-gray-dark);
 }
 
 /* === PAGINATION NUMBERED BUTTONS === */
 .pagination-button {
-    width: 21px;
-    height: 25px;
-    background-color: transparent;
-    border: none;
-    margin-right: 16px;
-    font-family: var(--font-family), sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 150%;
-    color: var(--primary-gray-dark);
-    cursor: pointer;
+  width: 21px;
+  height: 25px;
+  background-color: transparent;
+  border: none;
+  margin-right: 16px;
+  font-family: var(--font-family), sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: var(--primary-gray-dark);
+  cursor: pointer;
 }
 
 .pagination-button-active {
-    width: 21px;
-    height: 25px;
-    padding: 2px 6px;
-    border-radius: 3px;
-    color: var(--primary-white);
-    background-color: var(--primary-blue);
+  width: 21px;
+  height: 25px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--primary-white);
+  background-color: var(--primary-blue);
 }
 
 .pagination-button:hover {
-    width: 21px;
-    height: 25px;
-    padding: 2px 6px;
-    border-radius: 3px;
-    color: var(--primary-white);
-    background-color: var(--primary-blue);
+  width: 21px;
+  height: 25px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--primary-white);
+  background-color: var(--primary-blue);
 }

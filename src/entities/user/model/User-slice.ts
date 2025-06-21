@@ -47,17 +47,17 @@ const UserSlice = createSlice({
     setUserError: (state, action: PayloadAction<boolean>) => {
       state.errorUser = action.payload;
     },
-    resetUserData: (state) => {
+    resetUserData: state => {
       state.user = null;
       state.repos = [];
       state.errorUser = false;
       state.loadingUser = false;
       state.loadingRepos = false;
-    }
+    },
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchUser.pending, (state) => {
+      .addCase(fetchUser.pending, state => {
         state.loadingUser = true;
         state.errorUser = false;
       })
@@ -65,12 +65,12 @@ const UserSlice = createSlice({
         state.loadingUser = false;
         state.user = action.payload;
       })
-      .addCase(fetchUser.rejected, (state) => {
+      .addCase(fetchUser.rejected, state => {
         state.loadingUser = false;
         state.errorUser = true;
       })
 
-      .addCase(fetchUserRepo.pending, (state) => {
+      .addCase(fetchUserRepo.pending, state => {
         state.loadingRepos = true;
         state.errorUser = false;
       })
@@ -78,13 +78,12 @@ const UserSlice = createSlice({
         state.loadingRepos = false;
         state.repos = action.payload;
       })
-      .addCase(fetchUserRepo.rejected, (state) => {
+      .addCase(fetchUserRepo.rejected, state => {
         state.loadingRepos = false;
         state.errorUser = true;
       });
   },
 });
-
 
 export const { setCurrentPage, setUserError, resetUserData } = UserSlice.actions;
 export default UserSlice.reducer;

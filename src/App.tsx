@@ -6,12 +6,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainScreen from './pages/Main-screen';
 
 function App() {
-
   return (
     <Fragment>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path='/' element={<Layout />}>
             <Route index element={<MainScreen />}></Route>
           </Route>
         </Routes>

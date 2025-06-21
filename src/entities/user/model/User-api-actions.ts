@@ -7,7 +7,6 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async (query: string
   return response.data;
 });
 
-
 export const fetchUserRepo = createAsyncThunk(
   'user/fetchUserRepo',
   async ({ query, page }: { query: string; page: number }) => {
@@ -18,5 +17,5 @@ export const fetchUserRepo = createAsyncThunk(
       },
     });
     return response.data;
-  }
+  },
 );
