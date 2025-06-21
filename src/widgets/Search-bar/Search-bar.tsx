@@ -1,27 +1,29 @@
 import styles from './Search-bar.module.css';
 import SearchIcon from '../Search-icon';
 import { useEffect, useState } from 'react';
-import { useAppDispatch } from '../../entities/user/model/store.ts';
+import { useAppDispatch, useAppSelector } from '../../entities/user/model/store.ts';
 import { fetchUser, fetchUserRepo } from '../../entities/user/model/User-api-actions.ts';
+import { getCurrentPage } from '../../entities/user/model/User-selectors.ts';
 
 export const SearchBar = () => {
   const dispatch = useAppDispatch();
   const [query, setQuery] = useState('');
+  const page = useAppSelector(getCurrentPage);
 
   useEffect(() => {
     if (query.trim()) {
       const timer = setTimeout(() => {
         dispatch(fetchUser(query))
           .unwrap()
-          .then((response) => {
-            dispatch(fetchUserRepo(response.repos_url));
+          .then(() => {
+            dispatch(fetchUserRepo({query, page}));
           })
           .catch(() => {});
       }, 300);
 
       return () => clearInterval(timer);
     }
-  }, [dispatch, query]);
+  }, [dispatch, query, page]);
 
   return (
     <div className={styles['search-bar-wrapper']}>

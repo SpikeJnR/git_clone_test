@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { NameSpace } from '../../../config/const.ts';
 import { fetchUser, fetchUserRepo } from './User-api-actions.ts';
 
@@ -9,6 +9,7 @@ interface User {
   login: string;
   followers: number;
   following: number;
+  public_repos: number;
 }
 
 interface Repo {
@@ -24,6 +25,7 @@ interface SearchState {
   repos: Repo[];
   loading: boolean;
   error: string | null;
+  page: number | 0,
 }
 
 const initialState: SearchState = {
@@ -31,12 +33,17 @@ const initialState: SearchState = {
   repos: [],
   loading: false,
   error: null,
+  page: 0,
 };
 
 const UserSlice = createSlice({
   name: NameSpace.USER,
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentPage: (state, action: PayloadAction<number>) => {
+      state.page = action.payload;
+    }
+  },
   extraReducers: builder => {
     builder
 
@@ -70,4 +77,6 @@ const UserSlice = createSlice({
   },
 });
 
+
+export const { setCurrentPage } = UserSlice.actions;
 export default UserSlice.reducer;

@@ -3,3 +3,4 @@ import { NameSpace } from '../../../config/const.ts';
 
 export const getUserData = (state: RootState) => state[NameSpace.USER]?.user;
 export const getUserRepo = (state: RootState) => state[NameSpace.USER]?.repos;
+export const getCurrentPage = (state: RootState) => state[NameSpace.USER]?.page;
