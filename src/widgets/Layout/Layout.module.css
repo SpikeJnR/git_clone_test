@@ -24,5 +24,7 @@
     height: 100%;
     background-color: var(--primary-green);
     display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 28px 56px 0;
 }
