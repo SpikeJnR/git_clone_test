@@ -19,20 +19,21 @@ interface Repo {
   description: string | null;
   stargazers_count: number;
 }
-
 interface SearchState {
   user: User | null;
   repos: Repo[];
-  loading: boolean;
-  error: string | null;
-  page: number | 1,
+  loadingUser: boolean;
+  loadingRepos: boolean;
+  errorUser: boolean;
+  page: number;
 }
 
 const initialState: SearchState = {
   user: null,
   repos: [],
-  loading: false,
-  error: null,
+  loadingUser: false,
+  loadingRepos: false,
+  errorUser: false,
   page: 1,
 };
 
@@ -42,41 +43,48 @@ const UserSlice = createSlice({
   reducers: {
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
+    },
+    setUserError: (state, action: PayloadAction<boolean>) => {
+      state.errorUser = action.payload;
+    },
+    resetUserData: (state) => {
+      state.user = null;
+      state.repos = [];
+      state.errorUser = false;
+      state.loadingUser = false;
+      state.loadingRepos = false;
     }
   },
   extraReducers: builder => {
     builder
-
-      //fetchUser
-      .addCase(fetchUser.pending, state => {
-        state.loading = true;
-        state.error = null;
+      .addCase(fetchUser.pending, (state) => {
+        state.loadingUser = true;
+        state.errorUser = false;
       })
       .addCase(fetchUser.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingUser = false;
         state.user = action.payload;
       })
-      .addCase(fetchUser.rejected, state => {
-        state.loading = false;
-        state.error = 'Search error';
+      .addCase(fetchUser.rejected, (state) => {
+        state.loadingUser = false;
+        state.errorUser = true;
       })
 
-      //fetchUserRepo
-      .addCase(fetchUserRepo.pending, state => {
-        state.loading = true;
-        state.error = null;
+      .addCase(fetchUserRepo.pending, (state) => {
+        state.loadingRepos = true;
+        state.errorUser = false;
       })
       .addCase(fetchUserRepo.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingRepos = false;
         state.repos = action.payload;
       })
-      .addCase(fetchUserRepo.rejected, state => {
-        state.loading = false;
-        state.error = 'Repo fetch error';
+      .addCase(fetchUserRepo.rejected, (state) => {
+        state.loadingRepos = false;
+        state.errorUser = true;
       });
   },
 });
 
 
-export const { setCurrentPage } = UserSlice.actions;
+export const { setCurrentPage, setUserError, resetUserData } = UserSlice.actions;
 export default UserSlice.reducer;

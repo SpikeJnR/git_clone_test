@@ -1,4 +1,4 @@
-import styles from '*.module.css';
+import styles from './User-repositories-empty.module.css';
 
 export const UserRepositoriesEmpty = () => {
   return(

@@ -1,12 +1,18 @@
 import { useAppSelector } from '../../model/store.ts';
-import { getUserData } from '../../model/User-selectors.ts';
+import { getDataLoading, getUserData } from '../../model/User-selectors.ts';
 import styles from './User-info.module.css';
 import { Link } from 'react-router-dom';
+import LoadingScreen from '../../../../pages/Loading-screen';
 
 export const UserInfo = () => {
   const user = useAppSelector(getUserData);
+  const loading = useAppSelector(getDataLoading)
 
   if (!user) {return;}
+
+  if(loading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div className={styles['user-info-wrapper']}>

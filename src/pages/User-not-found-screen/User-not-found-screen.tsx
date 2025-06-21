@@ -1,4 +1,4 @@
-import styles from './Initial-screen.module.css'
+import styles from './User-not-found-screen.module.css'
 
 export const UserNotFoundScreen = () => {
   return (

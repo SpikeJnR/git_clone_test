@@ -1,10 +1,11 @@
 /* === WRAPPER === */
 .user-repositories-wrapper {
     width: 877px;
-    height: 112px;
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
+
 
 /* === TITLE === */
 .user-repositories-title {
@@ -20,6 +21,10 @@
     background-color: var(--primary-white);
     margin-bottom: 24px;
     padding: 24px 32px;
+}
+
+.user-repositories-element:hover {
+    box-shadow: 0 0 0 3px var(--primary-blue);
 }
 
 .user-repositories-element-title {
@@ -76,8 +81,8 @@
 
 /* === PAGINATION NUMBERED BUTTONS === */
 .pagination-button {
-    width: 24px;
-    height: 24px;
+    width: 21px;
+    height: 25px;
     background-color: transparent;
     border: none;
     margin-right: 16px;
@@ -90,6 +95,15 @@
 }
 
 .pagination-button-active {
+    width: 21px;
+    height: 25px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: var(--primary-white);
+    background-color: var(--primary-blue);
+}
+
+.pagination-button:hover {
     width: 21px;
     height: 25px;
     padding: 2px 6px;
