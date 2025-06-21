@@ -5,6 +5,8 @@
   --primary-gray-dark: #808080;
   --primary-black: #000;
   --border-radius: 6px;
+  --font-family: "Inter", sans-serif;
+  --second-family: "Work Sans", sans-serif;
 }
 
 *,
@@ -41,4 +43,3 @@ img {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
-

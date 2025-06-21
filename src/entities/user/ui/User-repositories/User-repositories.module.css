@@ -1,0 +1,36 @@
+.user-repositories-wrapper {
+    width: 877px;
+    height: 112px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-repositories-title {
+    font-family: var(--font-family), sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 130%;
+    color: var(--primary-black);
+    margin-bottom: 29px;
+}
+
+.user-repositories-element {
+    background-color: var(--primary-white);
+    margin-bottom: 24px;
+    padding: 24px 32px;
+}
+
+.user-repositories-element-title {
+    font-family: var(--font-family), sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: var(--primary-blue);
+    margin-bottom: 16px;
+}
+
+.user-repositories-element-description {
+    font-family: var(--font-family), sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--primary-black);
+}

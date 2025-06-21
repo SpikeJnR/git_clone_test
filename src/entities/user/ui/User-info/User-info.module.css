@@ -3,6 +3,7 @@
     height: 431px;
     display: flex;
     flex-direction: column;
+    margin-right: 85px;
 }
 
 .user-image {

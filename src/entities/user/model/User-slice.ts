@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../../config/const.ts';
-import { fetchUser } from './User-api-actions.ts';
+import { fetchUser, fetchUserRepo } from './User-api-actions.ts';
 
 interface User {
   avatar_url: string;
@@ -11,14 +11,24 @@ interface User {
   following: number;
 }
 
+interface Repo {
+  id: number;
+  name: string;
+  html_url: string;
+  description: string | null;
+  stargazers_count: number;
+}
+
 interface SearchState {
   user: User | null;
+  repos: Repo[];
   loading: boolean;
   error: string | null;
 }
 
 const initialState: SearchState = {
   user: null,
+  repos: [],
   loading: false,
   error: null,
 };
@@ -31,7 +41,7 @@ const UserSlice = createSlice({
     builder
 
       //fetchUser
-      .addCase(fetchUser.pending, (state) => {
+      .addCase(fetchUser.pending, state => {
         state.loading = true;
         state.error = null;
       })
@@ -39,11 +49,25 @@ const UserSlice = createSlice({
         state.loading = false;
         state.user = action.payload;
       })
-      .addCase(fetchUser.rejected, (state) => {
+      .addCase(fetchUser.rejected, state => {
         state.loading = false;
         state.error = 'Search error';
+      })
+
+      //fetchUserRepo
+      .addCase(fetchUserRepo.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchUserRepo.fulfilled, (state, action) => {
+        state.loading = false;
+        state.repos = action.payload;
+      })
+      .addCase(fetchUserRepo.rejected, state => {
+        state.loading = false;
+        state.error = 'Repo fetch error';
       });
-  }
+  },
 });
 
 export default UserSlice.reducer;

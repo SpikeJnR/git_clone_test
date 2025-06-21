@@ -2,7 +2,7 @@ import styles from './Search-bar.module.css';
 import SearchIcon from '../Search-icon';
 import { useEffect, useState } from 'react';
 import { useAppDispatch } from '../../entities/user/model/store.ts';
-import { fetchUser } from '../../entities/user/model/User-api-actions.ts';
+import { fetchUser, fetchUserRepo } from '../../entities/user/model/User-api-actions.ts';
 
 export const SearchBar = () => {
   const dispatch = useAppDispatch();
@@ -11,7 +11,12 @@ export const SearchBar = () => {
   useEffect(() => {
     if (query.trim()) {
       const timer = setTimeout(() => {
-        dispatch(fetchUser(query));
+        dispatch(fetchUser(query))
+          .unwrap()
+          .then((response) => {
+            dispatch(fetchUserRepo(response.repos_url));
+          })
+          .catch(() => {});
       }, 300);
 
       return () => clearInterval(timer);
