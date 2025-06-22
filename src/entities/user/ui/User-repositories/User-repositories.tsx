@@ -101,12 +101,12 @@ const UserRepositories = () => {
         <>
           <h2 className={styles['user-repositories-title']}>Repositories ({user.public_repos})</h2>
           {repos.map(repo => (
-            <div className={styles['user-repositories-element']} key={repo.id}>
-              <Link className={styles['user-repositories-element-title']} to={repo.html_url}>
+            <Link className={styles['user-repositories-element']} key={repo.id} to={repo.html_url}>
+              <span className={styles['user-repositories-element-title']}>
                 {repo.name}
-              </Link>
+              </span>
               <p className={styles['user-repositories-element-description']}>{repo.description}</p>
-            </div>
+            </Link>
           ))}
           <div className={styles['repositories-pagination']}>
             <span className={styles['repositories-pagination-title']}>
