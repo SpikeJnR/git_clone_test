@@ -3,8 +3,9 @@ import { getDataLoading, getUserData } from '../../model/User-selectors.ts';
 import styles from './User-info.module.css';
 import { Link } from 'react-router-dom';
 import LoadingScreen from '../../../../pages/Loading-screen';
+import { memo } from 'react';
 
-export const UserInfo = () => {
+const UserInfo = () => {
   const user = useAppSelector(getUserData);
   const loading = useAppSelector(getDataLoading);
 
@@ -69,3 +70,9 @@ export const UserInfo = () => {
     </div>
   );
 };
+
+
+const MemoizedUserInfo = memo(UserInfo);
+MemoizedUserInfo.displayName = 'UserInfo';
+
+export default MemoizedUserInfo;

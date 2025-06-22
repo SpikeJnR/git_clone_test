@@ -1,2 +1,2 @@
-import { UserRepositories } from './User-repositories.tsx';
-export default UserRepositories;
+import MemoizedUserRepositories from './User-repositories.tsx';
+export default MemoizedUserRepositories;

@@ -10,11 +10,11 @@ import { Link } from 'react-router-dom';
 import { REPO_PER_PAGE } from '../../../../config/const.ts';
 import { setCurrentPage } from '../../model/User-slice.ts';
 import { fetchUserRepo } from '../../model/User-api-actions.ts';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import UserRepositoriesEmpty from '../User-repositories-empty';
 import LoadingScreen from '../../../../pages/Loading-screen';
 
-export const UserRepositories = () => {
+const UserRepositories = () => {
   const repos = useAppSelector(getUserRepo);
   const user = useAppSelector(getUserData);
   const page = useAppSelector(getCurrentPage);
@@ -93,7 +93,6 @@ export const UserRepositories = () => {
     ));
   };
 
-
   return (
     <section className={styles['user-repositories-wrapper']}>
       {repos.length === 0 ? (
@@ -156,3 +155,9 @@ export const UserRepositories = () => {
     </section>
   );
 };
+
+
+const MemoizedUserRepositories = memo(UserRepositories);
+MemoizedUserRepositories.displayName = 'UserRepositories';
+
+export default MemoizedUserRepositories;
