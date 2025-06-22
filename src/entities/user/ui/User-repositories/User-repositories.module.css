@@ -20,6 +20,7 @@
   background-color: var(--primary-white);
   margin-bottom: 24px;
   padding: 24px 32px;
+  cursor: pointer;
 }
 
 .user-repositories-element:hover {
@@ -31,12 +32,14 @@
   font-size: 24px;
   color: var(--primary-blue);
   margin-bottom: 16px;
+  cursor: pointer;
 }
 
 .user-repositories-element-description {
   font-weight: 400;
   font-size: 16px;
   color: var(--primary-black);
+  cursor: pointer;
 }
 
 /* === PAGINATION === */
@@ -80,7 +83,7 @@
 
 /* === PAGINATION NUMBERED BUTTONS === */
 .pagination-button {
-  width: 21px;
+  width: 25px;
   height: 25px;
   background-color: transparent;
   border: none;
@@ -93,20 +96,16 @@
   cursor: pointer;
 }
 
-.pagination-button-active {
-  width: 21px;
-  height: 25px;
-  padding: 2px 6px;
+.pagination-button-active,
+.pagination-button:hover {
+  padding: 2px 3px;
   border-radius: 3px;
   color: var(--primary-white);
   background-color: var(--primary-blue);
 }
 
-.pagination-button:hover {
-  width: 21px;
-  height: 25px;
-  padding: 2px 6px;
-  border-radius: 3px;
-  color: var(--primary-white);
-  background-color: var(--primary-blue);
+.pagination-button:disabled {
+  cursor: default;
+  opacity: 0.5;
+  pointer-events: none;
 }

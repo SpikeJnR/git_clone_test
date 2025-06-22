@@ -33,7 +33,6 @@ export const UserRepositories = () => {
     return <LoadingScreen />;
   }
   const totalPages = Math.ceil(user.public_repos / REPO_PER_PAGE);
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   const prevPage = () => {
     if (page > 1) {
@@ -54,20 +53,38 @@ export const UserRepositories = () => {
   const renderPagination = () => {
     const pagesToShow: (number | string)[] = [];
 
-    if (totalPages <= 4) {
-      pagesToShow.push(...pages);
-    } else {
-      if (page <= totalPages / 2) {
-        pagesToShow.push(1, 2, 3, '...', totalPages);
-      } else if (page > totalPages / 2) {
-        pagesToShow.push(1, '...', totalPages - 2, totalPages - 1, totalPages);
-      }
+    pagesToShow.push(1);
+
+    const shouldShowLeftDots = page > 3;
+    const shouldShowRightDots = page < totalPages - 2;
+
+    const startPage = Math.max(2, page - 1);
+    const endPage = Math.min(totalPages - 1, page + 1);
+
+    if (shouldShowLeftDots) {
+      pagesToShow.push('...');
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pagesToShow.push(i);
+    }
+
+    if (shouldShowRightDots) {
+      pagesToShow.push('...');
+    }
+
+    if (totalPages > 1) {
+      pagesToShow.push(totalPages);
     }
 
     return pagesToShow.map((pageElement, id) => (
       <button
         key={id}
-        className={`${styles['pagination-button']} ${typeof pageElement === 'number' && pageElement === page ? styles['pagination-button-active'] : ''}`}
+        className={`${styles['pagination-button']} ${
+          typeof pageElement === 'number' && pageElement === page
+            ? styles['pagination-button-active']
+            : ''
+        }`}
         onClick={() => typeof pageElement === 'number' && handlePageClick(pageElement)}
         disabled={pageElement === '...'}
       >
@@ -75,6 +92,7 @@ export const UserRepositories = () => {
       </button>
     ));
   };
+
 
   return (
     <section className={styles['user-repositories-wrapper']}>
